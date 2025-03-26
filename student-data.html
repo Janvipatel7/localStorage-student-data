@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="valid"></h1>
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody id="studentData">
+                <tr>
+                    <!-- <td>1</td>
+                    <td>John</td>
+                    <td>john123@gmail.com</td>
+                    <td>sull stack</td>
+                    <td>male</td> -->
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button class="btn btn-warning" onclick="window.location=`./index.html`">Home Page</button>
+        </div>
+    </div>
+
+    <script>
+        let students = JSON.parse(localStorage.getItem("students")) || [];
+        if(students.length === 0){
+            document.getElementById("valid").innerHTML = "No Student Data Found!!!!";
+        }else{
+            students.forEach((studentInfo , idx)=> {
+                document.getElementById("studentData").innerHTML += `
+                <tr>
+                    <td>${idx + 1}</td>
+                    <td>${studentInfo.name}</td>
+                    <td>${studentInfo.mail}</td>
+                    <td>${studentInfo.course == 1 ? `Full Stack Develpoment` : studentInfo.course == 2 ? `UI/UX Design` : `AI/ML and Data Science`}</td>
+                    <td>${studentInfo.gender}</td>
+                </tr>`
+            });
+        }
+    </script>
+    
+</body>
+</html>
