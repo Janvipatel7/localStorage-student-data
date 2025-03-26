@@ -1,61 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
 </head>
+
 <body>
-    
+
     <div class="container">
         <h1 class="text-center">CRUD Operation with Local Storage</h1>
         <form action="" class="row">
             <div class="my-3 col-lg-6 ">
-            <label for="name" class="fw-semibold">Name :</label>
-            <input type="text" name="name" id="name" class="form-control w-75">
+                <label for="name" class="fw-semibold">Name :</label>
+                <input type="text" name="name" id="name" class="form-control ">
             </div>
 
             <div class="my-3 col-lg-6">
-            <label for="mail" class="fw-semibold">Email :</label>
-            <input type="email" name="mail" id="mail" class="form-control w-75">
+                <label for="mail" class="fw-semibold">Email :</label>
+                <input type="email" name="mail" id="mail" class="form-control ">
             </div>
 
             <div class="my-3 col-lg-6">
-            <label for="course" class="fw-semibold">Course :</label>
-            <select name="course" id="course" class="form-select w-75">
-                <option value="">--Select Course--</option>
-                <option value="1">Full Stack Development</option>
-                <option value="2">UI/UX Design</option>
-                <option value="3">AI/ML and Data Science</option>
-            </select>
+                <label for="course" class="fw-semibold">Course :</label>
+                <select name="course" id="course" class="form-select ">
+                    <option value="">--Select Course--</option>
+                    <option value="1">Full Stack Development</option>
+                    <option value="2">UI/UX Design</option>
+                    <option value="3">AI/ML and Data Science</option>
+                </select>
             </div>
 
             <div class="my-3 col-lg-6">
-            <label for="gender" class="fw-semibold">Gender :</label>
-            <br>
-            <label for="male">Male :</label>
-            <input type="radio" name="gender" id="male" class="form-check-input" value="male">
-            <label for="female">Female :</label>
-            <input type="radio" name="gender" id="female" class="form-check-input" value="female">
+                <label for="gender" class="fw-semibold pt-3">Gender :</label>
+                <br>
+                <div class="d-flex mt-1">
+                    <div class="">
+                        <label for="male">Male :</label>
+                        <input type="radio" name="gender" id="male" class="form-check-input" value="male">
+                    </div>
+                    <div>
+                        <label for="female">Female :</label>
+                        <input type="radio" name="gender" id="female" class="form-check-input" value="female">
+                    </div>
+                </div>
             </div>
 
             <div class="my-3 text-center ">
-            <button class="btn btn-primary w-25" type="button" id="submit">Submit</button>
-            <button type="button" class="btn btn-success w-25" onclick="window.location = './student-data.html'">Student Details</button>
+                <button class="btn btn-primary w-25" type="button" id="submit">Submit</button>
+                <button type="button" class="btn btn-success w-25"
+                    onclick="window.location = './student-data.html'">Student Details</button>
             </div>
         </form>
     </div>
-    
+
     <script>
-        document.getElementById("submit").addEventListener("click" , () =>{
+        document.getElementById("submit").addEventListener("click", () => {
             let name = document.getElementById("name").value;
-            let mail = document.getElementById("mail").value; 
+            let mail = document.getElementById("mail").value;
             let course = document.getElementById("course").value;
             let gender = document.querySelector(`input[type="radio"]:checked`).value;
 
             if (!name || !mail || !course || !gender) {
-                 alert("Please fill all fields before submitting.");
+                alert("Please fill all fields before submitting.");
                 return;
             }
 
@@ -63,12 +72,13 @@
 
             let stuArray = JSON.parse(localStorage.getItem("students")) || [];
 
-            stuArray.push("studentObj");
+            stuArray.push(studentObj);
 
-            localStorage.setItem("students" , JSON.stringify(stuArray));    
+            localStorage.setItem("students", JSON.stringify(stuArray));
 
             window.location = "./student-data.html"
         })
     </script>
 </body>
+
 </html>

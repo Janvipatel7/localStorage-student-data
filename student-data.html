@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <div class="container">
-        <h1 id="valid"></h1>
+        <h1 id="valid" class="text-center my-3">Student Data Table</h1>
         <table class="table table-responsive table-striped">
             <thead>
                 <tr>
@@ -17,16 +18,28 @@
                     <th>Email</th>
                     <th>Course</th>
                     <th>Gender</th>
+                    <th><i class="bi bi-pencil-square"></i></th>
+                    <th><i class="bi bi-trash"></i></th>
                 </tr>
             </thead>
             <tbody id="studentData">
-                <tr>
-                    <!-- <td>1</td>
+                <!-- <tr>
+                    <td>1</td>
                     <td>John</td>
                     <td>john123@gmail.com</td>
                     <td>sull stack</td>
-                    <td>male</td> -->
-                </tr>
+                    <td>male</td>
+                    <td>
+                        <button class="btn btn-warning">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr> -->
             </tbody>
         </table>
         <div>
@@ -36,9 +49,9 @@
 
     <script>
         let students = JSON.parse(localStorage.getItem("students")) || [];
-        if(students.length === 0){
-            document.getElementById("valid").innerHTML = "No Student Data Found!!!!";
-        }else{
+
+        function display(){
+            document.getElementById("studentData").innerHTML = "";
             students.forEach((studentInfo , idx)=> {
                 document.getElementById("studentData").innerHTML += `
                 <tr>
@@ -47,9 +60,37 @@
                     <td>${studentInfo.mail}</td>
                     <td>${studentInfo.course == 1 ? `Full Stack Develpoment` : studentInfo.course == 2 ? `UI/UX Design` : `AI/ML and Data Science`}</td>
                     <td>${studentInfo.gender}</td>
+                    <td>
+                        <button class="btn btn-warning">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" onclick="deletedata(${idx})">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
                 </tr>`
             });
         }
+        if(students.length === 0){
+            document.getElementById("valid").innerHTML = "No Student Data Found!!!!";
+        }else{
+            display();
+        }
+
+        function deletedata(idx){
+            students.splice(idx , 1);
+            localStorage.setItem("students", JSON.stringify(students));
+            display();
+        }
+
+        // if(students == 0){
+        //     document.getElementById("valid").innerHTML = "No Student Data Found!!!!";
+        // }else{
+        //     display();
+        // }
+        
     </script>
     
 </body>
