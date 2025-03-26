@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="valid" class="text-center my-3">Student Data Table</h1>
+        <h1 id="heading"></h1>
         <table class="table table-responsive table-striped">
             <thead>
                 <tr>
@@ -48,6 +48,7 @@
     </div>
 
     <script>
+        let heading = document.getElementById("heading");
         let students = JSON.parse(localStorage.getItem("students")) || [];
 
         function display(){
@@ -74,8 +75,11 @@
             });
         }
         if(students.length === 0){
-            document.getElementById("valid").innerHTML = "No Student Data Found!!!!";
+            heading.innerHTML = "No Student Record ";
+            document.getElementById("studentData").innerHTML = "";
+            document.querySelector("table").innerHTML = "";
         }else{
+            heading.innerHTML = "Student Details ";
             display();
         }
 
@@ -85,11 +89,7 @@
             display();
         }
 
-        // if(students == 0){
-        //     document.getElementById("valid").innerHTML = "No Student Data Found!!!!";
-        // }else{
-        //     display();
-        // }
+        
         
     </script>
     
