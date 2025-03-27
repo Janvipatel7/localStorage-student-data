@@ -56,29 +56,7 @@
         </form>
     </div>
 
-    <script>
-        document.getElementById("submit").addEventListener("click", () => {
-            let name = document.getElementById("name").value;
-            let mail = document.getElementById("mail").value;
-            let course = document.getElementById("course").value;
-            let gender = document.querySelector(`input[type="radio"]:checked`).value;
-
-            if (!name || !mail || !course || !gender) {
-                alert("Please fill all fields before submitting.");
-                return;
-            }
-
-            let studentObj = { name, mail, course, gender };
-
-            let stuArray = JSON.parse(localStorage.getItem("students")) || [];
-
-            stuArray.push(studentObj);
-
-            localStorage.setItem("students", JSON.stringify(stuArray));
-
-            window.location = "./student-data.html"
-        })
-    </script>
+    <script src="./assets/js/index.js"></script>
 </body>
 
 </html>
